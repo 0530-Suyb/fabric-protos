@@ -62,3 +62,25 @@ message KafkaBrokers {
 message ChannelRestrictions {
     uint64 max_count = 1; // The max count of channels to allow to be created, a value of 0 indicates no limit
 }
+
+
+// PoolCountPerChannel is the mssage which conveys the pool count of every channel for an orderer
+message PoolCountPerChannel {
+    uint64 pool_count_per_channel = 1;
+}
+
+// NormalChannelPoolIDs is the message which conveys the pool ids of every standard channel for an orderer
+message NormalChannelPoolIDs {
+	repeated string pool = 1;
+}
+
+// SortMapping is the sort rule about which pool should the tx sorted
+message SortMapping {
+    repeated PoolMapping pool_mapping = 1;
+}
+
+// PoolMapping decide what kind of txs the pool can receive
+message PoolMapping {
+    string pool = 1;
+    repeated string tx_type = 2;
+}

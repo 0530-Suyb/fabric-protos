@@ -28,3 +28,9 @@ Hyperledger Project source code files are made available under the Apache Licens
 [protobuf]: https://github.com/protocolbuffers/protobuf/
 [rocketchat-image]: https://open.rocket.chat/images/join-chat.svg
 [rocketchat-url]: https://chat.hyperledger.org/channel/fabric
+
+## How to build fabric-protos-go lib
+
+1. using file ci/Dokcerfile to build docker image which provides isolated environment and relative tools to build lib
+2. In directory fabric-protos, making directory build/fabric-protoc-go and running docker container to execute file ci/compile_go_protos.sh
+3. now, get your lib in build/fabric-protoc-go
