@@ -63,24 +63,43 @@ message ChannelRestrictions {
     uint64 max_count = 1; // The max count of channels to allow to be created, a value of 0 indicates no limit
 }
 
-
-// PoolCountPerChannel is the mssage which conveys the pool count of every channel for an orderer
-message PoolCountPerChannel {
-    uint64 pool_count_per_channel = 1;
-}
-
 // NormalChannelPoolIDs is the message which conveys the pool ids of every standard channel for an orderer
-message NormalChannelPoolIDs {
-	repeated string pool = 1;
+message NormalChannelPools {
+	repeated NormalChannelPool pool = 1;
 }
 
-// SortMapping is the sort rule about which pool should the tx sorted
-message SortMapping {
-    repeated PoolMapping pool_mapping = 1;
-}
-
-// PoolMapping decide what kind of txs the pool can receive
-message PoolMapping {
+message SystemChannelPool {
     string pool = 1;
-    repeated string tx_type = 2;
+    Filter filter = 2;
+    Start start = 3;
+}
+
+message NormalChannelPool {
+    string pool = 1;
+    Filter filter = 2;
+    Sort sort = 3;
+    Start start = 4;
+    Select select = 5;
+    Order order = 6;
+}
+
+message Filter {
+    string type = 1;
+}
+
+message Sort {
+    repeated string txType = 1;
+}
+
+message Start {
+    string type = 1;
+}
+
+message Select {
+    string type = 1;
+    string priority = 2;
+}
+
+message Order {
+    string type = 1;
 }
