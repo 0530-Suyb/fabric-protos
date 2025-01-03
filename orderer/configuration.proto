@@ -63,28 +63,35 @@ message ChannelRestrictions {
     uint64 max_count = 1; // The max count of channels to allow to be created, a value of 0 indicates no limit
 }
 
-// NormalChannelPoolIDs is the message which conveys the pool ids of every standard channel for an orderer
-message NormalChannelPools {
-	repeated NormalChannelPool pool = 1;
+// NormalChannel is the message which conveys the pool ids of every standard channel for an orderer
+message NormalChannel {
+	Filter filter = 1;
+	Sorter Sorter = 2;
+	string ConfigPool = 3;
+	repeated Pool pools = 4;
 }
 
-message SystemChannelPool {
-    string pool = 1;
-    Filter filter = 2;
+message SystemChannel {
+    Filter filter = 1;
+    string ConfigPool = 2;
+    Pool pool = 3;
+}
+
+message Pool {
+    string name = 1;
+    Sort sort = 2;
     Start start = 3;
-}
-
-message NormalChannelPool {
-    string pool = 1;
-    Filter filter = 2;
-    Sort sort = 3;
-    Start start = 4;
-    Select select = 5;
-    Order order = 6;
+    Select select = 4;
+    Order order = 5;
 }
 
 message Filter {
+    repeated string rules = 1;
+}
+
+message Sorter {
     string type = 1;
+    string args = 2;
 }
 
 message Sort {
@@ -93,6 +100,8 @@ message Sort {
 
 message Start {
     string type = 1;
+    string batchTimeOut = 2;
+    repeated string immediatePackTxType = 3;
 }
 
 message Select {

@@ -45,13 +45,14 @@ message ConsensusRequest {
 message SubmitRequest {
     string channel = 1;
     string pool = 2;
+    string ccName = 3;
     // last_validation_seq denotes the last
     // configuration sequence at which the
     // sender validated this message.
-    uint64 last_validation_seq = 3;
+    uint64 last_validation_seq = 4;
     // content is the fabric transaction
     // that is forwarded to the cluster member.
-    common.Envelope payload = 4;
+    common.Envelope payload = 5;
 }
 
 // SubmitResponse returns a success
