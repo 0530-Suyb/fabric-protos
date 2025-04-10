@@ -153,6 +153,7 @@ message BlockHeader {
     uint64 number = 1; // The position in the blockchain
     bytes previous_hash = 2; // The hash of the previous block header
     bytes data_hash = 3; // The hash of the BlockData, by MerkleTree
+    string pool_id = 4;
 }
 
 message BlockData {
